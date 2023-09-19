@@ -20,7 +20,7 @@ const CarCard = ({ car, onCarList, onOpen }) => {
 
   const arrAddress = address.split(',');
   // console.log(arrAddress);
-  const checkImg = (img) => `${!img ? `/car.svg` : `${img}`}`;
+  const checkImg = img => `${!img ? `/car.svg` : `${img}`}`;
 
   function handleClick() {
     onOpen();
@@ -35,7 +35,9 @@ const CarCard = ({ car, onCarList, onOpen }) => {
           alt={`${make} poster`}
         />
 
-        <IconContext.Provider value={{ color: 'rgba(52, 112, 255, 1)' }}>
+        <IconContext.Provider
+          value={{ color: isActive ? 'rgba(52, 112, 255, 1)' : '#fff' }}
+        >
           <button
             className="absolute right-[10px] top-[10px]"
             onClick={() => {
@@ -43,7 +45,7 @@ const CarCard = ({ car, onCarList, onOpen }) => {
               setIsActive(true);
             }}
           >
-            <FaHeart />
+            {isActive ? <FaHeart /> : <FaRegHeart />}
           </button>
         </IconContext.Provider>
       </div>

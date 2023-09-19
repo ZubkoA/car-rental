@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router-dom';
 import SelectCars from '../components/SelectCars';
 import { useState } from 'react';
 import Modal from '../components/Modal';
@@ -6,8 +5,6 @@ import SearchForm from '../components/SearchForm';
 
 const Advert = ({ cars, isLoading, setPage, selectedId, onCarList }) => {
   const [isShowModal, setIsShowModal] = useState(false);
-
-  const location = useLocation();
 
   const openModal = () => {
     setIsShowModal(true);

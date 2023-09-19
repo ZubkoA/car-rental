@@ -9,8 +9,8 @@ import { useCars } from '../hook/useCars';
 const App = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [page, setPage] = useState(1);
-  const [favoriteCars, setFavoriteCars] = useState([]);
-  const { cars, isLoading, error } = useCars(page);
+  // const [favoriteCars, setFavoriteCars] = useState([]);
+  const { cars, isLoading } = useCars(page);
 
   function handleSelectCar(id) {
     setSelectedId(selectedId => (id === selectedId ? null : id));

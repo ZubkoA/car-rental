@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 import { findCar } from '../services/EventsApi';
@@ -7,7 +7,7 @@ import Loader from './Loader';
 
 const Modal = ({ onClose, selectedId, isLoading }) => {
   useEffect(() => {
-    const handleESC = (e) => {
+    const handleESC = e => {
       console.log('esc');
       if (e.code === 'Escape') {
         onClose();
@@ -20,12 +20,12 @@ const Modal = ({ onClose, selectedId, isLoading }) => {
   }, [onClose]);
 
   useEffect(() => {
-    findCar(selectedId).then((data) => {
+    findCar(selectedId).then(data => {
       console.log(data);
     });
   }, [selectedId]);
 
-  const checkImg = (img) => `${!img ? `/car.svg` : `${img}`}`;
+  // const checkImg = (img) => `${!img ? `/car.svg` : `${img}`}`;
 
   return (
     <>
