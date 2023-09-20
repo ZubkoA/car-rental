@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'ui/Button';
+import DefaultImg from '../img/car.svg';
 
 const FavoriteCard = ({ car, onOpen }) => {
   const {
@@ -24,7 +25,8 @@ const FavoriteCard = ({ car, onOpen }) => {
     return arrAddress;
   }
 
-  const checkImg = img => `${!img ? `/car.svg` : `${img}`}`;
+  const checkImg = img => `${!img ? `${DefaultImg}` : `${img}`}`;
+
   return (
     <li className="li">
       <div className="relative">

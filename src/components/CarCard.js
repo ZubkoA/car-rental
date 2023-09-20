@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import Button from '../ui/Button';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
+import DefaultImg from '../img/car.svg';
 
 export const CarCard = ({ car, onCarList, onOpen, onAddCars }) => {
   const fid = nanoid();
@@ -31,7 +32,7 @@ export const CarCard = ({ car, onCarList, onOpen, onAddCars }) => {
     const arrAddress = address.split(',');
     return arrAddress;
   }
-  const checkImg = img => `${!img ? `/car.svg` : `${img}`}`;
+  const checkImg = img => `${!img ? `${DefaultImg}` : `${img}`}`;
 
   function handleClick() {
     const carDetails = {
