@@ -3,6 +3,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 import Button from '../ui/Button';
 import Loader from './Loader';
+import DefaultImg from '../img/car.svg';
 
 const Modal = ({ onClose, carDetails, isLoading }) => {
   const {
@@ -45,14 +46,14 @@ const Modal = ({ onClose, carDetails, isLoading }) => {
   }
   const arrAge = arrConditions(rentalConditions)[0].split(':');
 
-  const checkImg = img => `${!img ? `/car.svg` : `${img}`}`;
+  const checkImg = img => `${!img ? `${DefaultImg}` : `${img}`}`;
 
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="absolute z-50 box-border rounded-3xl bg-white p-10 text-sm font-normal leading-5">
+        <div className="absolute z-50 box-border rounded-3xl bg-white p-10 text-sm font-normal leading-5 top-24 left-1/4">
           <div
             className="relative flex w-[461px] cursor-pointer flex-col gap-[24px]"
             onClick={onClose}
