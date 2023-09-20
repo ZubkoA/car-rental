@@ -11,6 +11,9 @@
 }
 
 @layer components {
+  .section {
+    @apply flex  flex-col items-center gap-[50px] px-[128px] py-[150px];
+  }
   .ul {
     @apply grid w-[1184px] grid-cols-4 gap-x-[28px] gap-y-[50px];
   }

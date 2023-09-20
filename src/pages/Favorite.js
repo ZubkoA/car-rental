@@ -1,20 +1,21 @@
 import Modal from 'components/Modal';
 
-import FavoriteSelect from 'components/favorite/FavoriteSelect';
+import FavoriteSelect from 'components/FavoriteSelect';
+import FavoriteSearchForm from 'components/FavoriteSearchForm';
 
 const Favorite = ({
   favoriteCars,
   onOpen,
   onClose,
   isShowModal,
-  selectedId,
+  carDetails,
 }) => {
   return (
-    <section className="flex  flex-col items-center gap-[50px] px-[128px] py-[150px]">
-      {/* <SearchForm /> */}
+    <section className="section">
+      <FavoriteSearchForm favoriteCars={favoriteCars} />
       <FavoriteSelect favoriteCars={favoriteCars} onOpen={onOpen} />
 
-      {isShowModal && <Modal onClose={onClose} selectedId={selectedId} />}
+      {isShowModal && <Modal onClose={onClose} carDetails={carDetails} />}
     </section>
   );
 };

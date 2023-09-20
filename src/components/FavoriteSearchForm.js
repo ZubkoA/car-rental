@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../ui/Button';
 
-const SearchForm = ({ cars }) => {
+const FavoriteSearchForm = ({ favoriteCars }) => {
   return (
     <form className="flex flex-row gap-[18px] font-medium">
       <div className="flex flex-col">
@@ -12,7 +12,7 @@ const SearchForm = ({ cars }) => {
           Car brand
         </label>
         <select name="make" className="rounded-[14px] bg-bgForm px-5 py-3.5">
-          {cars.map(car => (
+          {favoriteCars.map(car => (
             <option
               className="text-base text-input"
               value={car.make}
@@ -35,7 +35,7 @@ const SearchForm = ({ cars }) => {
           name="rentalPrice"
           className="rounded-[14px] bg-bgForm px-5 py-3.5"
         >
-          {cars.map(car => (
+          {favoriteCars.map(car => (
             <option
               className="text-base text-input"
               value={car.rentalPrice.slice(1)}
@@ -58,7 +58,7 @@ const SearchForm = ({ cars }) => {
             name="mileage"
             className="rounded-l-[14px] bg-bgForm px-5 py-3.5"
           >
-            {cars.map(car => (
+            {favoriteCars.map(car => (
               <option
                 className="text-base text-input"
                 value={car.mileage}
@@ -69,7 +69,7 @@ const SearchForm = ({ cars }) => {
             ))}
           </select>
           <select className="rounded-r-[14px] bg-bgForm px-5 py-3.5">
-            {cars.map(car => (
+            {favoriteCars.map(car => (
               <option
                 className="text-base text-input"
                 value={car.mileage}
@@ -86,4 +86,4 @@ const SearchForm = ({ cars }) => {
   );
 };
 
-export default SearchForm;
+export default FavoriteSearchForm;

@@ -7,9 +7,3 @@ export async function fetchCars(page) {
 
   return data;
 }
-export async function findCar(id) {
-  const { data } = await axios(`/adverts/9587`);
-  console.log(data);
-
-  return data;
-}

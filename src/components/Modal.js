@@ -1,14 +1,29 @@
 import React, { useEffect } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
-// import { findCar } from '../services/EventsApi';
 import Button from '../ui/Button';
 import Loader from './Loader';
 
-const Modal = ({ onClose, selectedId, isLoading }) => {
+const Modal = ({ onClose, carDetails, isLoading }) => {
+  const {
+    make,
+    img,
+    model,
+    rentalPrice,
+    year,
+    address,
+    mileage,
+    type,
+    id,
+    accessories,
+    fuelConsumption,
+    engineSize,
+    description,
+    functionalities,
+    rentalConditions,
+  } = carDetails;
   useEffect(() => {
     const handleESC = e => {
-      console.log('esc');
       if (e.code === 'Escape') {
         onClose();
       }
@@ -19,13 +34,18 @@ const Modal = ({ onClose, selectedId, isLoading }) => {
     };
   }, [onClose]);
 
-  // useEffect(() => {
-  //   findCar(selectedId).then(data => {
-  //     console.log(data);
-  //   });
-  // }, [selectedId]);
+  function arrFunction(address) {
+    const arrAddress = address.split(',');
+    return arrAddress;
+  }
 
-  // const checkImg = (img) => `${!img ? `/car.svg` : `${img}`}`;
+  function arrConditions(rentalConditions) {
+    const arrConditions = rentalConditions.split('\n');
+    return arrConditions;
+  }
+  const arrAge = arrConditions(rentalConditions)[0].split(':');
+
+  const checkImg = img => `${!img ? `/car.svg` : `${img}`}`;
 
   return (
     <>
@@ -38,51 +58,82 @@ const Modal = ({ onClose, selectedId, isLoading }) => {
             onClick={onClose}
           >
             <IconContext.Provider value={{ size: '24px' }}>
-              <div className="absolute right-[10px] top-[10px]">
+              <div className="absolute right-[-25px] top-[-25px]">
                 <AiOutlineClose />
               </div>
             </IconContext.Provider>
             <div>
               <img
-                className="h-[248px] flex-shrink-0 rounded-[14px]"
-                // src={checkImg(img)}
-                src="/car.svg"
-                alt="car"
-                // alt={`${make} poster`}
+                className="flex-shrink-0 rounded-[14px] object-cover"
+                src={checkImg(img)}
+                alt={make}
               />
             </div>
             <div className="flex flex-col gap-[14px]">
               <div className="flex flex-row space-x-1 text-lg font-medium">
-                <h3>make</h3>
-                <p className="text-btnHover">model,</p>
-                <p>year</p>
+                <h3>{make}</h3>
+                <p className="text-btnHover">{model},</p>
+                <p>{year}</p>
               </div>
               <div className="inline text-xs leading-[18px] text-input">
                 <p className="inline">
-                  arrAddress
+                  {arrFunction(address)[1]}
                   <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>
                 </p>
                 <p className="inline">
-                  arrAddress 2
+                  {arrFunction(address)[2]}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  Id: {id}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  Year: {year}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  Type: {type}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  Fuel Consumption: {fuelConsumption}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  Engine Size: {engineSize}
                   <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
                 </p>
               </div>
 
-              <p>
-                The Buick Enclave is a stylish and spacious SUV known for its
-                comfortable ride and luxurious features.
-              </p>
+              <p>{description}</p>
             </div>
 
             <div>
               <h3 className="mb-2">Accessories and functionalities:</h3>
               <div className="inline text-xs leading-[18px] text-input">
                 <p className="inline">
-                  Leather seats
+                  {functionalities[0]}
                   <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>
                 </p>
                 <p className="inline">
-                  Panoramic sunroof Power liftgate
+                  {functionalities[1]}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>
+                </p>
+                <p className="inline">
+                  {functionalities[2]}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>
+                </p>
+                <p className="inline">
+                  {accessories[0]}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  {accessories[1]}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  {accessories[2]}
                   <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
                 </p>
               </div>
@@ -91,19 +142,20 @@ const Modal = ({ onClose, selectedId, isLoading }) => {
               <h3 className="mb-2">Rental Conditions: </h3>
               <ul className="flex flex-wrap gap-2">
                 <li className="inline rounded-[35px] bg-bg px-[14px] py-[7px]">
-                  Minimum age : 25
+                  {arrAge[0]}
+                  <span className="text-btnHover">{arrAge[1]}</span>
                 </li>
                 <li className="inline rounded-[35px] bg-bg px-[14px] py-[7px]">
-                  Valid driver’s license
+                  {arrConditions(rentalConditions)[1]}
                 </li>
                 <li className="inline rounded-[35px] bg-bg px-[14px] py-[7px]">
-                  Security deposite required
+                  {arrConditions(rentalConditions)[2]}
                 </li>
                 <li className="inline rounded-[35px] bg-bg px-[14px] py-[7px]">
-                  Mileage: 5,858
+                  Mileage: <span className="text-btnHover">{mileage}</span>
                 </li>
                 <li className="inline rounded-[35px] bg-bg px-[14px] py-[7px]">
-                  Price: 40$
+                  Price: <span className="text-btnHover">{rentalPrice}</span>
                 </li>
               </ul>
             </div>
