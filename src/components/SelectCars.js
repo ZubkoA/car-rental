@@ -3,7 +3,14 @@
 import CarCard from './CarCard';
 import Loader from './Loader';
 
-const SelectCars = ({ onCarList, onOpen, setPage, isLoading, cars }) => {
+const SelectCars = ({
+  onCarList,
+  onOpen,
+  setPage,
+  isLoading,
+  cars,
+  onAddCars,
+}) => {
   function handleClick() {
     setPage(prev => prev + 1);
   }
@@ -14,13 +21,14 @@ const SelectCars = ({ onCarList, onOpen, setPage, isLoading, cars }) => {
         <Loader />
       ) : (
         <>
-          <ul className="grid w-[1184px] grid-cols-4 gap-x-[28px] gap-y-[50px]">
+          <ul className="ul">
             {cars?.map(car => (
               <CarCard
                 car={car}
                 key={car.id}
                 onCarList={onCarList}
                 onOpen={onOpen}
+                onAddCars={onAddCars}
               />
             ))}
           </ul>

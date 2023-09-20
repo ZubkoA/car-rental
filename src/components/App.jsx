@@ -4,18 +4,30 @@ import Home from '../pages/Home';
 import Layout from './Layout';
 import Advert from '../pages/Advert';
 import Favorite from '../pages/Favorite';
-import { useCars } from '../hook/useCars';
+
+import { useLocalStorageState } from 'hook/useLocalStorage';
 
 const App = () => {
+  const [favoriteCars, setFavoriteCars] = useLocalStorageState([], 'favorite');
+  const [isShowModal, setIsShowModal] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
-  const [page, setPage] = useState(1);
-  // const [favoriteCars, setFavoriteCars] = useState([]);
-  const { cars, isLoading } = useCars(page);
 
   function handleSelectCar(id) {
     setSelectedId(selectedId => (id === selectedId ? null : id));
   }
-  console.log(selectedId);
+
+  const openModal = () => {
+    setIsShowModal(true);
+  };
+
+  const closeModal = () => {
+    setIsShowModal(false);
+  };
+
+  function handleAddCars(car) {
+    setFavoriteCars(favoriteCars => [...favoriteCars, car]);
+  }
+  console.log(favoriteCars);
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -24,15 +36,27 @@ const App = () => {
           path="catalog"
           element={
             <Advert
-              cars={cars}
-              isLoading={isLoading}
-              setPage={setPage}
-              onCarList={handleSelectCar}
+              onAddCars={handleAddCars}
               selectedId={selectedId}
+              onClose={closeModal}
+              isShowModal={isShowModal}
+              onOpen={openModal}
+              onCarList={handleAddCars}
             />
           }
         />
-        <Route path="favorites" element={<Favorite cars={cars} />} />
+        <Route
+          path="favorites"
+          element={
+            <Favorite
+              favoriteCars={favoriteCars}
+              selectedId={selectedId}
+              onClose={closeModal}
+              isShowModal={isShowModal}
+              onOpen={openModal}
+            />
+          }
+        />
       </Route>
     </Routes>
   );

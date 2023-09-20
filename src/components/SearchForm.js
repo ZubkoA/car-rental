@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../ui/Button';
 
 const SearchForm = ({ cars }) => {
+  const [price, setPrice] = useState(10);
   // const arrCars = cars.map((car) => car.mileage).sort();
-  // console.log(arrCars);
+  console.log(price);
   // console.log(make);
   return (
     <form className="flex flex-row gap-[18px] font-medium">
@@ -15,7 +16,7 @@ const SearchForm = ({ cars }) => {
           Car brand
         </label>
         <select name="make" className="rounded-[14px] bg-bgForm px-5 py-3.5">
-          {cars.map((car) => (
+          {cars.map(car => (
             <option
               className="text-base text-input"
               value={car.make}
@@ -37,15 +38,15 @@ const SearchForm = ({ cars }) => {
         <select
           name="rentalPrice"
           className="rounded-[14px] bg-bgForm px-5 py-3.5"
+          value={price}
+          onChange={e => setPrice(Number(e.target.value))}
         >
-          {cars.map((car) => (
+          {Array.from({ length: 20 }, (_, i) => i * 10).map(num => (
             <option
               className="text-base text-input"
-              value={car.rentalPrice.slice(1)}
-              key={car.id}
-            >
-              {car.rentalPrice.slice(1)}
-            </option>
+              value={num}
+              key={num}
+            ></option>
           ))}
         </select>
       </div>
@@ -61,7 +62,7 @@ const SearchForm = ({ cars }) => {
             name="mileage"
             className="rounded-l-[14px] bg-bgForm px-5 py-3.5"
           >
-            {cars.map((car) => (
+            {cars.map(car => (
               <option
                 className="text-base text-input"
                 value={car.mileage}
@@ -72,7 +73,7 @@ const SearchForm = ({ cars }) => {
             ))}
           </select>
           <select className="rounded-r-[14px] bg-bgForm px-5 py-3.5">
-            {cars.map((car) => (
+            {cars.map(car => (
               <option
                 className="text-base text-input"
                 value={car.mileage}

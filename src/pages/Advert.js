@@ -1,19 +1,33 @@
 import SelectCars from '../components/SelectCars';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from '../components/Modal';
 import SearchForm from '../components/SearchForm';
 
-const Advert = ({ cars, isLoading, setPage, selectedId, onCarList }) => {
-  const [isShowModal, setIsShowModal] = useState(false);
+import { fetchCars } from 'services/EventsApi';
 
-  const openModal = () => {
-    setIsShowModal(true);
-  };
+const Advert = ({
+  onAddCars,
+  selectedId,
+  onClose,
+  isShowModal,
+  onOpen,
+  onCarList,
+}) => {
+  const [page, setPage] = useState(1);
+  const [cars, setCars] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const closeModal = () => {
-    setIsShowModal(false);
-  };
-  console.log(cars);
+  useEffect(() => {
+    setIsLoading(true);
+    fetchCars(page)
+      .then(data => {
+        setCars(prev => [...prev, ...data]);
+      })
+      .catch(error => console.log(error))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [page]);
 
   return (
     <section className="flex  flex-col items-center gap-[50px] px-[128px] py-[150px]">
@@ -21,15 +35,16 @@ const Advert = ({ cars, isLoading, setPage, selectedId, onCarList }) => {
 
       <SelectCars
         onCarList={onCarList}
-        onOpen={openModal}
+        onOpen={onOpen}
         isLoading={isLoading}
         setPage={setPage}
         cars={cars}
+        onAddCars={onAddCars}
       />
 
       {isShowModal && (
         <Modal
-          onClose={closeModal}
+          onClose={onClose}
           isLoading={isLoading}
           selectedId={selectedId}
         />

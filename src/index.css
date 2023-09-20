@@ -9,3 +9,12 @@
     font-family: Manrope, system-ui, sans-serif;
   }
 }
+
+@layer components {
+  .ul {
+    @apply grid w-[1184px] grid-cols-4 gap-x-[28px] gap-y-[50px];
+  }
+  .li {
+    @apply flex flex-col gap-y-3.5;
+  }
+}
