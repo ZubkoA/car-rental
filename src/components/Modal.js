@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
-// import { findCar } from '../services/EventsApi';
 import Button from '../ui/Button';
 import Loader from './Loader';
 
@@ -13,7 +12,7 @@ const Modal = ({ onClose, carDetails, isLoading }) => {
     rentalPrice,
     year,
     address,
-    rentalCompany,
+    mileage,
     type,
     id,
     accessories,
@@ -21,8 +20,8 @@ const Modal = ({ onClose, carDetails, isLoading }) => {
     engineSize,
     description,
     functionalities,
+    rentalConditions,
   } = carDetails;
-  console.log(carDetails);
   useEffect(() => {
     const handleESC = e => {
       if (e.code === 'Escape') {
@@ -39,6 +38,12 @@ const Modal = ({ onClose, carDetails, isLoading }) => {
     const arrAddress = address.split(',');
     return arrAddress;
   }
+
+  function arrConditions(rentalConditions) {
+    const arrConditions = rentalConditions.split('\n');
+    return arrConditions;
+  }
+  const arrAge = arrConditions(rentalConditions)[0].split(':');
 
   const checkImg = img => `${!img ? `/car.svg` : `${img}`}`;
 
@@ -137,19 +142,20 @@ const Modal = ({ onClose, carDetails, isLoading }) => {
               <h3 className="mb-2">Rental Conditions: </h3>
               <ul className="flex flex-wrap gap-2">
                 <li className="inline rounded-[35px] bg-bg px-[14px] py-[7px]">
-                  Minimum age : 25
+                  {arrAge[0]}
+                  <span className="text-btnHover">{arrAge[1]}</span>
                 </li>
                 <li className="inline rounded-[35px] bg-bg px-[14px] py-[7px]">
-                  Valid driver’s license
+                  {arrConditions(rentalConditions)[1]}
                 </li>
                 <li className="inline rounded-[35px] bg-bg px-[14px] py-[7px]">
-                  Security deposite required
+                  {arrConditions(rentalConditions)[2]}
                 </li>
                 <li className="inline rounded-[35px] bg-bg px-[14px] py-[7px]">
-                  Mileage: 5,858
+                  Mileage: <span className="text-btnHover">{mileage}</span>
                 </li>
                 <li className="inline rounded-[35px] bg-bg px-[14px] py-[7px]">
-                  Price: 40$
+                  Price: <span className="text-btnHover">{rentalPrice}</span>
                 </li>
               </ul>
             </div>

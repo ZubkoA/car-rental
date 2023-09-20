@@ -27,7 +27,7 @@ const App = () => {
   function handleAddCars(car) {
     setFavoriteCars(favoriteCars => [...favoriteCars, car]);
   }
-  console.log(favoriteCars);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

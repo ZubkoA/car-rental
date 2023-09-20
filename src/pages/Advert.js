@@ -12,6 +12,7 @@ const Advert = ({
   isShowModal,
   onOpen,
   onCarList,
+  onDelete,
 }) => {
   const [page, setPage] = useState(1);
   const [cars, setCars] = useState([]);
@@ -40,6 +41,7 @@ const Advert = ({
         setPage={setPage}
         cars={cars}
         onAddCars={onAddCars}
+        onDelete={onDelete}
       />
 
       {isShowModal && (

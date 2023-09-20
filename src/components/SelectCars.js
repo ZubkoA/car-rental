@@ -1,6 +1,4 @@
-// import React, { useEffect, useState } from 'react';
-// import { fetchCars } from '../services/EventsApi';
-import CarCard from './CarCard';
+import { CarCard } from './CarCard';
 import Loader from './Loader';
 
 const SelectCars = ({

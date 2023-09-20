@@ -4,7 +4,7 @@ import Button from '../ui/Button';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
 
-const CarCard = ({ car, onCarList, onOpen, onAddCars }) => {
+export const CarCard = ({ car, onCarList, onOpen, onAddCars }) => {
   const fid = nanoid();
   const [isActive, setIsActive] = useState(false);
 
@@ -23,6 +23,8 @@ const CarCard = ({ car, onCarList, onOpen, onAddCars }) => {
     engineSize,
     description,
     functionalities,
+    rentalConditions,
+    mileage,
   } = car;
 
   function arrFunction(address) {
@@ -39,7 +41,7 @@ const CarCard = ({ car, onCarList, onOpen, onAddCars }) => {
       rentalPrice,
       year,
       address,
-      rentalCompany,
+      mileage,
       type,
       id,
       accessories,
@@ -47,6 +49,7 @@ const CarCard = ({ car, onCarList, onOpen, onAddCars }) => {
       engineSize,
       description,
       functionalities,
+      rentalConditions,
     };
     onOpen();
     onCarList(carDetails);
@@ -126,10 +129,8 @@ const CarCard = ({ car, onCarList, onOpen, onAddCars }) => {
         <p className="inline">{accessories[0]}</p>
       </div>
       <Button type="big" onClick={handleClick}>
-        Learn more
+        <a href="tel:+380502114545">Learn more</a>
       </Button>
     </li>
   );
 };
-
-export default CarCard;

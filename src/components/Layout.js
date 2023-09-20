@@ -1,7 +1,8 @@
-import React, { Suspense } from "react";
-import { Outlet } from "react-router-dom";
-import Header from "./Header";
-import Footer from "./Footer";
+import React, { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
+import Loader from './Loader';
 
 const Layout = () => {
   return (
@@ -9,7 +10,7 @@ const Layout = () => {
       <Header />
       <div className="overflow-scroll">
         <main className="mx-auto h-full ">
-          <Suspense fallback={<div>loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
         </main>
