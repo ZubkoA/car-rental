@@ -10,10 +10,10 @@ import { useLocalStorageState } from 'hook/useLocalStorage';
 const App = () => {
   const [favoriteCars, setFavoriteCars] = useLocalStorageState([], 'favorite');
   const [isShowModal, setIsShowModal] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
+  const [carDetails, setCarDetails] = useState(null);
 
-  function handleSelectCar(id) {
-    setSelectedId(selectedId => (id === selectedId ? null : id));
+  function handleSelectCar(car) {
+    setCarDetails(car);
   }
 
   const openModal = () => {
@@ -37,7 +37,7 @@ const App = () => {
           element={
             <Advert
               onAddCars={handleAddCars}
-              selectedId={selectedId}
+              carDetails={carDetails}
               onClose={closeModal}
               isShowModal={isShowModal}
               onOpen={openModal}
@@ -50,7 +50,7 @@ const App = () => {
           element={
             <Favorite
               favoriteCars={favoriteCars}
-              selectedId={selectedId}
+              carDetails={carDetails}
               onClose={closeModal}
               isShowModal={isShowModal}
               onOpen={openModal}

@@ -7,7 +7,7 @@ import { fetchCars } from 'services/EventsApi';
 
 const Advert = ({
   onAddCars,
-  selectedId,
+  carDetails,
   onClose,
   isShowModal,
   onOpen,
@@ -30,7 +30,7 @@ const Advert = ({
   }, [page]);
 
   return (
-    <section className="flex  flex-col items-center gap-[50px] px-[128px] py-[150px]">
+    <section className="section">
       <SearchForm cars={cars} />
 
       <SelectCars
@@ -46,7 +46,7 @@ const Advert = ({
         <Modal
           onClose={onClose}
           isLoading={isLoading}
-          selectedId={selectedId}
+          carDetails={carDetails}
         />
       )}
     </section>

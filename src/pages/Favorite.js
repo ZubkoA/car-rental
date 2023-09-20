@@ -7,14 +7,14 @@ const Favorite = ({
   onOpen,
   onClose,
   isShowModal,
-  selectedId,
+  carDetails,
 }) => {
   return (
-    <section className="flex  flex-col items-center gap-[50px] px-[128px] py-[150px]">
+    <section className="section">
       {/* <SearchForm /> */}
       <FavoriteSelect favoriteCars={favoriteCars} onOpen={onOpen} />
 
-      {isShowModal && <Modal onClose={onClose} selectedId={selectedId} />}
+      {isShowModal && <Modal onClose={onClose} carDetails={carDetails} />}
     </section>
   );
 };

@@ -5,10 +5,26 @@ import { IconContext } from 'react-icons';
 import Button from '../ui/Button';
 import Loader from './Loader';
 
-const Modal = ({ onClose, selectedId, isLoading }) => {
+const Modal = ({ onClose, carDetails, isLoading }) => {
+  const {
+    make,
+    img,
+    model,
+    rentalPrice,
+    year,
+    address,
+    rentalCompany,
+    type,
+    id,
+    accessories,
+    fuelConsumption,
+    engineSize,
+    description,
+    functionalities,
+  } = carDetails;
+  console.log(carDetails);
   useEffect(() => {
     const handleESC = e => {
-      console.log('esc');
       if (e.code === 'Escape') {
         onClose();
       }
@@ -19,13 +35,12 @@ const Modal = ({ onClose, selectedId, isLoading }) => {
     };
   }, [onClose]);
 
-  // useEffect(() => {
-  //   findCar(selectedId).then(data => {
-  //     console.log(data);
-  //   });
-  // }, [selectedId]);
+  function arrFunction(address) {
+    const arrAddress = address.split(',');
+    return arrAddress;
+  }
 
-  // const checkImg = (img) => `${!img ? `/car.svg` : `${img}`}`;
+  const checkImg = img => `${!img ? `/car.svg` : `${img}`}`;
 
   return (
     <>
@@ -38,51 +53,82 @@ const Modal = ({ onClose, selectedId, isLoading }) => {
             onClick={onClose}
           >
             <IconContext.Provider value={{ size: '24px' }}>
-              <div className="absolute right-[10px] top-[10px]">
+              <div className="absolute right-[-25px] top-[-25px]">
                 <AiOutlineClose />
               </div>
             </IconContext.Provider>
             <div>
               <img
-                className="h-[248px] flex-shrink-0 rounded-[14px]"
-                // src={checkImg(img)}
-                src="/car.svg"
-                alt="car"
-                // alt={`${make} poster`}
+                className="flex-shrink-0 rounded-[14px] object-cover"
+                src={checkImg(img)}
+                alt={make}
               />
             </div>
             <div className="flex flex-col gap-[14px]">
               <div className="flex flex-row space-x-1 text-lg font-medium">
-                <h3>make</h3>
-                <p className="text-btnHover">model,</p>
-                <p>year</p>
+                <h3>{make}</h3>
+                <p className="text-btnHover">{model},</p>
+                <p>{year}</p>
               </div>
               <div className="inline text-xs leading-[18px] text-input">
                 <p className="inline">
-                  arrAddress
+                  {arrFunction(address)[1]}
                   <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>
                 </p>
                 <p className="inline">
-                  arrAddress 2
+                  {arrFunction(address)[2]}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  Id: {id}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  Year: {year}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  Type: {type}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  Fuel Consumption: {fuelConsumption}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  Engine Size: {engineSize}
                   <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
                 </p>
               </div>
 
-              <p>
-                The Buick Enclave is a stylish and spacious SUV known for its
-                comfortable ride and luxurious features.
-              </p>
+              <p>{description}</p>
             </div>
 
             <div>
               <h3 className="mb-2">Accessories and functionalities:</h3>
               <div className="inline text-xs leading-[18px] text-input">
                 <p className="inline">
-                  Leather seats
+                  {functionalities[0]}
                   <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>
                 </p>
                 <p className="inline">
-                  Panoramic sunroof Power liftgate
+                  {functionalities[1]}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>
+                </p>
+                <p className="inline">
+                  {functionalities[2]}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>
+                </p>
+                <p className="inline">
+                  {accessories[0]}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  {accessories[1]}
+                  <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
+                </p>
+                <p className="inline">
+                  {accessories[2]}
                   <span className="span left-0 top-0  ml-1.5 mr-1.5 border-l border-t"></span>{' '}
                 </p>
               </div>

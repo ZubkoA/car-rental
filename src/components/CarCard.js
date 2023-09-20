@@ -19,6 +19,10 @@ const CarCard = ({ car, onCarList, onOpen, onAddCars }) => {
     type,
     id,
     accessories,
+    fuelConsumption,
+    engineSize,
+    description,
+    functionalities,
   } = car;
 
   function arrFunction(address) {
@@ -28,8 +32,24 @@ const CarCard = ({ car, onCarList, onOpen, onAddCars }) => {
   const checkImg = img => `${!img ? `/car.svg` : `${img}`}`;
 
   function handleClick() {
+    const carDetails = {
+      make,
+      img,
+      model,
+      rentalPrice,
+      year,
+      address,
+      rentalCompany,
+      type,
+      id,
+      accessories,
+      fuelConsumption,
+      engineSize,
+      description,
+      functionalities,
+    };
     onOpen();
-    onCarList(id);
+    onCarList(carDetails);
   }
 
   function handleAdd() {
