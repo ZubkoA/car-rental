@@ -29,6 +29,7 @@ const CarCard = ({ car, onCarList, onOpen, onAddCars }) => {
 
   function handleClick() {
     onOpen();
+    onCarList(id);
   }
 
   function handleAdd() {

@@ -1,6 +1,5 @@
-import nextId from 'react-id-generator';
 import Modal from 'components/Modal';
-import SearchForm from '../components/SearchForm';
+
 import FavoriteSelect from 'components/favorite/FavoriteSelect';
 
 const Favorite = ({
