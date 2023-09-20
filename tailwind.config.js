@@ -16,6 +16,7 @@ module.exports = {
       backgroundImage: {
         'home-pattern': "url('/assets/main_bg.jpg')",
       },
+      // logo: {'logo:'}
     },
   },
   plugins: [],

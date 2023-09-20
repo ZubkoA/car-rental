@@ -1,8 +1,9 @@
 import SelectCars from '../components/SelectCars';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from '../components/Modal';
 import SearchForm from '../components/SearchForm';
-import { useCars } from '../hook/useCars';
+
+import { fetchCars } from 'services/EventsApi';
 
 const Advert = ({
   onAddCars,
@@ -13,7 +14,20 @@ const Advert = ({
   onCarList,
 }) => {
   const [page, setPage] = useState(1);
-  const { cars, isLoading } = useCars(page);
+  const [cars, setCars] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchCars(page)
+      .then(data => {
+        setCars(prev => [...prev, ...data]);
+      })
+      .catch(error => console.log(error))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [page]);
 
   return (
     <section className="flex  flex-col items-center gap-[50px] px-[128px] py-[150px]">

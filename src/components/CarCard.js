@@ -50,7 +50,7 @@ const CarCard = ({ car, onCarList, onOpen, onAddCars }) => {
   }
 
   return (
-    <li className="flex flex-col gap-y-3.5">
+    <li className="li">
       <div className="relative">
         <img
           className="h-[268px] flex-shrink-0 rounded-lg"

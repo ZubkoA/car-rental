@@ -21,7 +21,7 @@ const SelectCars = ({
         <Loader />
       ) : (
         <>
-          <ul className="grid w-[1184px] grid-cols-4 gap-x-[28px] gap-y-[50px]">
+          <ul className="ul">
             {cars?.map(car => (
               <CarCard
                 car={car}
