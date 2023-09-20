@@ -64,7 +64,7 @@ const FavoriteCard = ({ car, onOpen }) => {
           <span className="span left-0 top-0 ml-1.5 mr-1.5 border-l border-t"></span>
         </p>
         <p className="inline">
-          id
+          {id}
           <span className="span left-0 top-0 ml-1.5  mr-1.5 border-l border-t"></span>
         </p>
         <p className="inline">{accessories[0]}</p>

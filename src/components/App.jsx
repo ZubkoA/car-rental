@@ -41,7 +41,7 @@ const App = () => {
               onClose={closeModal}
               isShowModal={isShowModal}
               onOpen={openModal}
-              onCarList={handleAddCars}
+              onCarList={handleSelectCar}
             />
           }
         />
