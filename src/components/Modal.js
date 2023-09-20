@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
-import { findCar } from '../services/EventsApi';
+// import { findCar } from '../services/EventsApi';
 import Button from '../ui/Button';
 import Loader from './Loader';
 
@@ -19,11 +19,11 @@ const Modal = ({ onClose, selectedId, isLoading }) => {
     };
   }, [onClose]);
 
-  useEffect(() => {
-    findCar(selectedId).then(data => {
-      console.log(data);
-    });
-  }, [selectedId]);
+  // useEffect(() => {
+  //   findCar(selectedId).then(data => {
+  //     console.log(data);
+  //   });
+  // }, [selectedId]);
 
   // const checkImg = (img) => `${!img ? `/car.svg` : `${img}`}`;
 

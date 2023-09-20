@@ -16,7 +16,7 @@ export function useCars(page) {
           setCars([]);
 
           const res = await fetch(
-            `https://6486d0e5beba6297278f381f.mockapi.io/adverts?page=${page}&limit=8`,
+            `https://6486d0e5beba6297278f381f.mockapi.io/adverts?page=${page}&limit=8`
           );
 
           if (!res.ok)
@@ -40,7 +40,7 @@ export function useCars(page) {
         controller.abort();
       };
     },
-    [page],
+    [page]
   );
 
   return { cars, isLoading, error };

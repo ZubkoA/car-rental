@@ -3,7 +3,14 @@
 import CarCard from './CarCard';
 import Loader from './Loader';
 
-const SelectCars = ({ onCarList, onOpen, setPage, isLoading, cars }) => {
+const SelectCars = ({
+  onCarList,
+  onOpen,
+  setPage,
+  isLoading,
+  cars,
+  onAddCars,
+}) => {
   function handleClick() {
     setPage(prev => prev + 1);
   }
@@ -21,6 +28,7 @@ const SelectCars = ({ onCarList, onOpen, setPage, isLoading, cars }) => {
                 key={car.id}
                 onCarList={onCarList}
                 onOpen={onOpen}
+                onAddCars={onAddCars}
               />
             ))}
           </ul>
