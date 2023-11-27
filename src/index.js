@@ -7,7 +7,7 @@ import App from './components/App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="/car-rental">
+    <BrowserRouter basename="/react-tailwindcss-car-rental">
       <App />
     </BrowserRouter>
   </React.StrictMode>
